@@ -5,13 +5,14 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var relationships= require('./relationship/relationship.js');
+var relationshipHandle = require("./relationship/relationship.handle.js");
 var index = require('./routes/index');
 var composers = require('./routes/composers');
 var musicians = require('./routes/musicians');
 var musics = require('./routes/musics');
 var app = express();
 var reputability=require('./source_reputability/calculation.js');
-const relationshipsController = require('./relationship/relationship.controller');
+const relationshipsController = require('./relationship/relationship.controller.js');
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');
@@ -30,6 +31,7 @@ app.use('/composers', composers);
 app.use('/musicians', musicians);
 app.use('/musics', musics);
 app.use('/relationships',relationships);
+app.use('/relationshipHandle',relationshipHandle);
 //app.use('/relationship',relationshipsController.relationship);
 app.use('/reputability',reputability );
 // catch 404 and forward to error handler
